@@ -1,0 +1,69 @@
+# .github/workflows/install-test.yml
+name: Installation Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-install:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Configure and Build
+      run: |
+        cmake -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=./install
+        cmake --build build
+    
+    - name: Install
+      run: cmake --install build
+    
+    - name: Test find_package
+      run: |
+        mkdir test_app
+        cd test_app
+        
+        cat > CMakeLists.txt << 'EOF'
+        cmake_minimum_required(VERSION 3.20)
+        project(test_app LANGUAGES CXX)
+        
+        # Usa il prefix path per trovare la libreria installata localmente
+        find_package(undoCore REQUIRED)
+        
+        add_executable(test_app main.cpp)
+        target_link_libraries(test_app undoCore::undoCore)
+        EOF
+        
+        cat > main.cpp << 'EOF'
+        #include <undoCore/undoCore.hpp>
+        #include <iostream>
+        
+        int main() {
+            std::cout << "UndoCore version: " 
+                      << undoCore_VERSION_MAJOR << "." 
+                      << undoCore_VERSION_MINOR << "." 
+                      << undoCore_VERSION_PATCH << std::endl;
+            
+            // Usa la tua libreria qui
+            // Esempio: auto bus = ioBus();
+            
+            return 0;
+        }
+        EOF
+        
+        cmake -B build -DCMAKE_PREFIX_PATH=../install
+        cmake --build build
+        ./build/test_app
+    
+    - name: Verifica struttura installazione
+      run: |
+        echo "=== Contenuto install/include ==="
+        ls -la install/include/
+        echo "=== Contenuto install/include/undoCore ==="
+        ls -la install/include/undoCore/
+        echo "=== Contenuto install/lib/cmake/undoCore ==="
+        ls -la install/lib/cmake/undoCore/

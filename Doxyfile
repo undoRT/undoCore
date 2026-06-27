@@ -1,0 +1,18 @@
+
+PROJECT_NAME           = "undoCore"
+PROJECT_BRIEF          = "Header-only C++20 core infrastructure for the undoRT ecosystem"
+PROJECT_LOGO           = undoCore_logo.png
+OUTPUT_DIRECTORY       = docs
+INPUT                  = include/ README.md
+FILE_PATTERNS          = *.hpp *.md
+RECURSIVE              = YES
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+HTML_EXTRA_STYLESHEET  =
+GENERATE_TREEVIEW      = YES
+HAVE_DOT               = YES
+DOT_IMAGE_FORMAT       = svg
+INTERACTIVE_SVG        = YES
