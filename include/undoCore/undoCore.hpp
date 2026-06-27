@@ -11,6 +11,7 @@
 
 #pragma once
 
+#include <undoCore/undoCoreVer.hpp>
 #include <undoCore/types.hpp>
 #include <undoCore/processImage.hpp>
 #include <undoCore/ioBus.hpp>
