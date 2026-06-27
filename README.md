@@ -4,8 +4,6 @@
 ![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)
 [![Docs](https://github.com/undoRT/undoCore/actions/workflows/docs.yml/badge.svg)](https://undort.com/undoCore/api/)
 [![Build](https://github.com/undoRT/undoCore/actions/workflows/build.yml/badge.svg)](https://github.com/undoRT/undoCore/actions/workflows/build.yml)
-[![Installation Test](https://github.com/undoRT/undoCore/actions/workflows/install-test.yml/badge.svg)](https://github.com/undoRT/undoCore/actions/workflows/install-test.yml)
-[![Static Analysis](https://github.com/undoRT/undoCore/actions/workflows/static-analysis.yml/badge.svg)](https://github.com/undoRT/undoCore/actions/workflows/static-analysis.yml)
 [![Release](https://github.com/undoRT/undoCore/actions/workflows/release.yml/badge.svg)](https://github.com/undoRT/undoCore/releases)
 
 ***Header-only C++20 library providing core infrastructure for the undoRT ecosystem.***
