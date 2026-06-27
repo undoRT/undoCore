@@ -12,7 +12,7 @@
 
 undoCore defines the fundamental contracts and data structures used across the undoRT family of projects:
 
-- **voidLang()** – Real-time PLC execution engine
+- **undoPLC** – Real-time PLC execution engine
 - **undoBUS** – Fieldbus master implementations (EtherCAT, Profibes, etc.)
 - **undoHMI** – Visualization and monitoring interfaces
 - **undoOS** – Real-time Linux distribution with PREEMPT_RT
