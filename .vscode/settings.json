@@ -1,7 +1,7 @@
 {
     "C_Cpp.errorSquiggles": "enabled",
     "editor.mouseWheelZoom": true,
-    "editor.formatOnSave": true,
+    "editor.formatOnSave": false,
     "C_Cpp.clang_format_style": "file:${workspaceRoot}/.vscode/.clang-format",
     "editor.fontFamily": "DejaVu Sans Mono",
     "editor.fontSize": 13,
