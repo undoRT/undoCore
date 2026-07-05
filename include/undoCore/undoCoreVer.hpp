@@ -13,7 +13,7 @@
 
 // Version numbers following Semantic Versioning (semver.org)
 #define UNDOCORE_VERSION_MAJOR  0
-#define UNDOCORE_VERSION_MINOR  1
+#define UNDOCORE_VERSION_MINOR  2
 #define UNDOCORE_VERSION_PATCH  0
 #define UNDOCORE_VERSION_PREREL ""
 

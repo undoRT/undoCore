@@ -3,7 +3,6 @@
  * @brief Process Image for IEC 61131-3 PLC execution
  * @author Salvatore Bamundo
  * @date June 2026
- * @brief
  * SPDX-License-Identifier: GPL-3.0-or-later
  * SPDX-FileCopyrightText: Copyright (c) 2026 undoRT
  * 
@@ -90,7 +89,9 @@ public:
      */
    void copyOut() noexcept { std::memcpy(_busOutputs.data(), _plcOutputs.data(), OutputBytes); }
 
+   // =========================================================================
    // PLC-side input accessors — AT %I*  (read-only for PLC)
+   // =========================================================================
 
    /**
      * @brief Read input bit: AT %IX<byteOffset>.<bitOffset>
@@ -262,6 +263,60 @@ public:
       static_assert(MarkerBytes > 0, "Marker area is disabled (MarkerBytes == 0)");
       checkMarkerBounds(byteOffset);
       return _markers[byteOffset];
+   }
+
+   /** @brief Write marker word (16-bit): AT %MW<byteOffset> */
+   void writeMarkerWord(size_t byteOffset, uint16_t value)
+   {
+      static_assert(MarkerBytes > 0, "Marker area is disabled (MarkerBytes == 0)");
+      checkMarkerBounds(byteOffset + 1);
+      std::memcpy(&_markers[byteOffset], &value, sizeof(uint16_t));
+   }
+
+   /** @brief Read marker word (16-bit): AT %MW<byteOffset> */
+   uint16_t readMarkerWord(size_t byteOffset) const
+   {
+      static_assert(MarkerBytes > 0, "Marker area is disabled (MarkerBytes == 0)");
+      checkMarkerBounds(byteOffset + 1);
+      uint16_t value;
+      std::memcpy(&value, &_markers[byteOffset], sizeof(uint16_t));
+      return value;
+   }
+
+   /** @brief Write marker dword (32-bit): AT %MD<byteOffset> */
+   void writeMarkerDword(size_t byteOffset, uint32_t value)
+   {
+      static_assert(MarkerBytes > 0, "Marker area is disabled (MarkerBytes == 0)");
+      checkMarkerBounds(byteOffset + 3);
+      std::memcpy(&_markers[byteOffset], &value, sizeof(uint32_t));
+   }
+
+   /** @brief Read marker dword (32-bit): AT %MD<byteOffset> */
+   uint32_t readMarkerDword(size_t byteOffset) const
+   {
+      static_assert(MarkerBytes > 0, "Marker area is disabled (MarkerBytes == 0)");
+      checkMarkerBounds(byteOffset + 3);
+      uint32_t value;
+      std::memcpy(&value, &_markers[byteOffset], sizeof(uint32_t));
+      return value;
+   }
+
+   /** @brief Write marker lword (64-bit): AT %ML<byteOffset> */
+   void writeMarkerLword(size_t byteOffset, uint64_t value)
+   {
+      static_assert(MarkerBytes > 0, "Marker area is disabled (MarkerBytes == 0)");
+      checkMarkerBounds(byteOffset + 7);
+      std::memcpy(&_markers[byteOffset], &value, sizeof(uint64_t));
+   }
+
+   /** @brief Read marker lword (64-bit): AT %ML<byteOffset> */
+   uint64_t readMarkerLword(size_t byteOffset) const
+   {
+      static_assert(MarkerBytes > 0, "Marker area is disabled (MarkerBytes == 0)");
+      checkMarkerBounds(byteOffset + 7);
+      uint64_t value;
+      std::memcpy(&value, &_markers[byteOffset], sizeof(uint64_t));
+      return value;
    }
 
 private:

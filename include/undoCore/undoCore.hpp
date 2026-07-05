@@ -15,3 +15,4 @@
 #include <undoCore/types.hpp>
 #include <undoCore/processImage.hpp>
 #include <undoCore/ioBus.hpp>
+#include <undoCore/conversions.hpp>

@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.20)
 
 project(undoCore
-    VERSION 0.1.0
+    VERSION 0.2.0
     DESCRIPTION "undoRT shared core - header-only"
     LANGUAGES CXX
 )
