@@ -89,9 +89,19 @@ public:
      */
    void copyOut() noexcept { std::memcpy(_busOutputs.data(), _plcOutputs.data(), OutputBytes); }
 
-   // =========================================================================
    // PLC-side input accessors — AT %I*  (read-only for PLC)
-   // =========================================================================
+
+   /** @brief Write input bit: AT %IX<byteOffset>.<bitOffset> */
+   void writeInputBit(size_t byteOffset, uint8_t bitOffset, bool value)
+   {
+      checkInputBounds(byteOffset);
+      checkBitOffset(bitOffset);
+      if (value) {
+         _plcInputs[byteOffset] |= (uint8_t(1) << bitOffset);
+      } else {
+         _plcInputs[byteOffset] &= ~(uint8_t(1) << bitOffset);
+      }
+   }
 
    /**
      * @brief Read input bit: AT %IX<byteOffset>.<bitOffset>
@@ -105,11 +115,25 @@ public:
       return (_plcInputs[byteOffset] >> bitOffset) & 0x01;
    }
 
+   /** @brief Write input byte: AT %IB<byteOffset> */
+   void writeInputByte(size_t byteOffset, uint8_t value)
+   {
+      checkInputBounds(byteOffset);
+      _plcInputs[byteOffset] = value;
+   }
+
    /** @brief Read input byte: AT %IB<byteOffset> */
    uint8_t readInputByte(size_t byteOffset) const
    {
       checkInputBounds(byteOffset);
       return _plcInputs[byteOffset];
+   }
+
+   /** @brief Write input word (16-bit): AT %IW<byteOffset> */
+   void writeInputWord(size_t byteOffset, uint16_t value)
+   {
+      checkInputBounds(byteOffset + 1);
+      std::memcpy(&_plcInputs[byteOffset], &value, sizeof(uint16_t));
    }
 
    /** @brief Read input word (16-bit): AT %IW<byteOffset> */
@@ -121,6 +145,13 @@ public:
       return value;
    }
 
+   /** @brief Write input dword (32-bit): AT %ID<byteOffset> */
+   void writeInputDword(size_t byteOffset, uint32_t value)
+   {
+      checkInputBounds(byteOffset + 3);
+      std::memcpy(&_plcInputs[byteOffset], &value, sizeof(uint32_t));
+   }
+
    /** @brief Read input dword (32-bit): AT %ID<byteOffset> */
    uint32_t readInputDword(size_t byteOffset) const
    {
@@ -128,6 +159,13 @@ public:
       uint32_t value;
       std::memcpy(&value, &_plcInputs[byteOffset], sizeof(uint32_t));
       return value;
+   }
+
+   /** @brief Write input lword (64-bit): AT %IL<byteOffset> */
+   void writeInputLword(size_t byteOffset, uint64_t value)
+   {
+      checkInputBounds(byteOffset + 7);
+      std::memcpy(&_plcInputs[byteOffset], &value, sizeof(uint64_t));
    }
 
    /** @brief Read input lword (64-bit): AT %IL<byteOffset> */
@@ -139,9 +177,7 @@ public:
       return value;
    }
 
-   // =========================================================================
    // PLC-side output accessors — AT %Q*  (read/write for PLC)
-   // =========================================================================
 
    /** @brief Write output bit: AT %QX<byteOffset>.<bitOffset> */
    void writeOutputBit(size_t byteOffset, uint8_t bitOffset, bool value)
