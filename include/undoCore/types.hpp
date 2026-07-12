@@ -112,6 +112,9 @@ using VAR_INOUT = VarInOut<T>;
  * @tparam Low Lower bound index (inclusive)
  * @tparam High Upper bound index (inclusive)
  *
+ * This implementation is trivially copyable when T is trivially copyable,
+ * allowing efficient memcpy operations and use in certain contexts.
+ *
  * Supports multidimensional arrays through nesting:
  *   STArray<STArray<Int, 0, 4>, 1, 3>  // 3x5 array (indices [1..3][0..4])
  *
@@ -119,38 +122,66 @@ using VAR_INOUT = VarInOut<T>;
  *   STArray<Int, 1, 10> arr1d;                   // 1D array
  *   STArray<STArray<Int, 0, 4>, 1, 3> arr2d;     // 2D array
  *   arr2d[2][3] = 42;                            // Access element
+ *   STArray<Int, 1, 10> arr = {1, 2, 3, 4, 5};   // 1D initialization
+ *   STArray<STArray<Int, 0, 2>, 0, 1> m = {{1, 2, 3}, {4, 5, 6}}; // 2D init
  */
 template<typename T, int Low, int High>
-class STArray
+struct STArray
 {
    static_assert(High >= Low, "High bound must be greater than or equal to Low bound");
 
    static constexpr size_t SIZE = (High - Low + 1);
    std::array<T, SIZE> data;
 
-public:
-   // Type aliases
+   // ===== Type aliases =====
    using value_type = T;
    using reference = T&;
    using const_reference = const T&;
    using iterator = typename std::array<T, SIZE>::iterator;
    using const_iterator = typename std::array<T, SIZE>::const_iterator;
 
-   // Constructors
+   // ===== Constructors =====
+   // All constructors are implicitly defined = default for trivial copyability
+   // The class is an aggregate, so brace initialization works natively
+
+   /**
+    * @brief Default constructor - zero-initializes the array
+    */
    STArray() = default;
 
-   // Initializer list constructor (for 1D arrays)
-   STArray(std::initializer_list<T> init)
-   {
-      size_t i = 0;
-      for (const auto& val : init) {
-         if (i < SIZE) {
-            data[i++] = val;
-         }
-      }
-   }
+   /**
+    * @brief Copy constructor - trivially copyable when T is trivially copyable
+    */
+   STArray(const STArray&) = default;
 
-   // Element access with bounds checking
+   /**
+    * @brief Move constructor - trivially movable when T is trivially movable
+    */
+   STArray(STArray&&) = default;
+
+   /**
+    * @brief Copy assignment - trivially copyable when T is trivially copyable
+    */
+   STArray& operator=(const STArray&) = default;
+
+   /**
+    * @brief Move assignment - trivially movable when T is trivially movable
+    */
+   STArray& operator=(STArray&&) = default;
+
+   /**
+    * @brief Destructor - trivially destructible when T is trivially destructible
+    */
+   ~STArray() = default;
+
+   // ===== Element Access =====
+
+   /**
+    * @brief Element access with bounds checking (non-const)
+    * @param index Index to access (can be negative if Low is negative)
+    * @return Reference to the element at the specified index
+    * @throws std::out_of_range if index is out of bounds
+    */
    reference operator[](int index)
    {
       if (index < Low || index > High) {
@@ -159,6 +190,12 @@ public:
       return data[index - Low];
    }
 
+   /**
+    * @brief Element access with bounds checking (const)
+    * @param index Index to access (can be negative if Low is negative)
+    * @return Const reference to the element at the specified index
+    * @throws std::out_of_range if index is out of bounds
+    */
    const_reference operator[](int index) const
    {
       if (index < Low || index > High) {
@@ -167,23 +204,73 @@ public:
       return data[index - Low];
    }
 
-   // Bounds information
+   // ===== Bounds Information =====
+
+   /**
+    * @brief Get the lower bound of the array
+    * @return Lower bound index
+    */
    static constexpr int low() { return Low; }
+
+   /**
+    * @brief Get the upper bound of the array
+    * @return Upper bound index
+    */
    static constexpr int high() { return High; }
+
+   /**
+    * @brief Get the number of elements in the array
+    * @return Size of the array
+    */
    static constexpr size_t size() { return SIZE; }
 
-   // Raw data access
+   // ===== Raw Data Access =====
+
+   /**
+    * @brief Get raw pointer to the underlying data (non-const)
+    * @return Pointer to the first element
+    */
    T* data_ptr() { return data.data(); }
+
+   /**
+    * @brief Get raw pointer to the underlying data (const)
+    * @return Const pointer to the first element
+    */
    const T* data_ptr() const { return data.data(); }
 
-   // Iterators
+   // ===== Iterators =====
+
+   /**
+    * @brief Get iterator to the beginning (non-const)
+    * @return Iterator to the first element
+    */
    iterator begin() { return data.begin(); }
+
+   /**
+    * @brief Get iterator to the end (non-const)
+    * @return Iterator to one past the last element
+    */
    iterator end() { return data.end(); }
+
+   /**
+    * @brief Get iterator to the beginning (const)
+    * @return Const iterator to the first element
+    */
    const_iterator begin() const { return data.begin(); }
+
+   /**
+    * @brief Get iterator to the end (const)
+    * @return Const iterator to one past the last element
+    */
    const_iterator end() const { return data.end(); }
 
-   // Fill with a value
-   void fill(const T& value) { std::fill(data.begin(), data.end(), value); }
+   // ===== Utility Methods =====
+
+   /**
+    * @brief Fill the entire array with a value
+    * @param value Value to fill with
+    */
+   void fill(const T& value) { data.fill(value); }
 };
 
 // ============================================================================
