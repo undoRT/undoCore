@@ -45,94 +45,1362 @@ namespace detail {
 
 inline Double iecRound(Double value)
 {
-    return std::round(value); // round-half-away-from-zero, matches IEC semantics
+   return std::round(value); // round-half-away-from-zero, matches IEC semantics
 }
 
 } // namespace detail
 
+// ============================================================================
 // Integer <-> Integer conversions
+// ============================================================================
 
-inline DINT INT_TO_DINT(INT v)   { return static_cast<DINT>(v); }
-inline INT  DINT_TO_INT(DINT v)  { return static_cast<INT>(v); }   // narrowing, wraps
-inline LINT DINT_TO_LINT(DINT v) { return static_cast<LINT>(v); }
-inline DINT LINT_TO_DINT(LINT v) { return static_cast<DINT>(v); }  // narrowing, wraps
+// Signed <-> Signed
+inline SINT INT_TO_SINT(INT v)
+{
+   return static_cast<SINT>(v);
+}
+inline SINT DINT_TO_SINT(DINT v)
+{
+   return static_cast<SINT>(v);
+}
+inline SINT LINT_TO_SINT(LINT v)
+{
+   return static_cast<SINT>(v);
+}
+inline INT SINT_TO_INT(SINT v)
+{
+   return static_cast<INT>(v);
+}
+inline INT DINT_TO_INT(DINT v)
+{
+   return static_cast<INT>(v);
+}
+inline INT LINT_TO_INT(LINT v)
+{
+   return static_cast<INT>(v);
+}
+inline DINT SINT_TO_DINT(SINT v)
+{
+   return static_cast<DINT>(v);
+}
+inline DINT INT_TO_DINT(INT v)
+{
+   return static_cast<DINT>(v);
+}
+inline DINT LINT_TO_DINT(LINT v)
+{
+   return static_cast<DINT>(v);
+}
+inline LINT SINT_TO_LINT(SINT v)
+{
+   return static_cast<LINT>(v);
+}
+inline LINT INT_TO_LINT(INT v)
+{
+   return static_cast<LINT>(v);
+}
+inline LINT DINT_TO_LINT(DINT v)
+{
+   return static_cast<LINT>(v);
+}
 
-inline UINT  INT_TO_UINT(INT v)   { return static_cast<UINT>(v); }
-inline INT   UINT_TO_INT(UINT v)  { return static_cast<INT>(v); }
-inline UDINT DINT_TO_UDINT(DINT v){ return static_cast<UDINT>(v); }
-inline DINT  UDINT_TO_DINT(UDINT v){ return static_cast<DINT>(v); }
+// Unsigned <-> Unsigned
+inline USINT UINT_TO_USINT(UINT v)
+{
+   return static_cast<USINT>(v);
+}
+inline USINT UDINT_TO_USINT(UDINT v)
+{
+   return static_cast<USINT>(v);
+}
+inline USINT ULINT_TO_USINT(ULINT v)
+{
+   return static_cast<USINT>(v);
+}
+inline UINT USINT_TO_UINT(USINT v)
+{
+   return static_cast<UINT>(v);
+}
+inline UINT UDINT_TO_UINT(UDINT v)
+{
+   return static_cast<UINT>(v);
+}
+inline UINT ULINT_TO_UINT(ULINT v)
+{
+   return static_cast<UINT>(v);
+}
+inline UDINT USINT_TO_UDINT(USINT v)
+{
+   return static_cast<UDINT>(v);
+}
+inline UDINT UINT_TO_UDINT(UINT v)
+{
+   return static_cast<UDINT>(v);
+}
+inline UDINT ULINT_TO_UDINT(ULINT v)
+{
+   return static_cast<UDINT>(v);
+}
+inline ULINT USINT_TO_ULINT(USINT v)
+{
+   return static_cast<ULINT>(v);
+}
+inline ULINT UINT_TO_ULINT(UINT v)
+{
+   return static_cast<ULINT>(v);
+}
+inline ULINT UDINT_TO_ULINT(UDINT v)
+{
+   return static_cast<ULINT>(v);
+}
 
-inline SINT  INT_TO_SINT(INT v)   { return static_cast<SINT>(v); } // narrowing, wraps
-inline INT   SINT_TO_INT(SINT v)  { return static_cast<INT>(v); }
+// Signed <-> Unsigned
+inline USINT SINT_TO_USINT(SINT v)
+{
+   return static_cast<USINT>(v);
+}
+inline USINT INT_TO_USINT(INT v)
+{
+   return static_cast<USINT>(v);
+}
+inline USINT DINT_TO_USINT(DINT v)
+{
+   return static_cast<USINT>(v);
+}
+inline USINT LINT_TO_USINT(LINT v)
+{
+   return static_cast<USINT>(v);
+}
+inline SINT USINT_TO_SINT(USINT v)
+{
+   return static_cast<SINT>(v);
+}
+inline SINT UINT_TO_SINT(UINT v)
+{
+   return static_cast<SINT>(v);
+}
+inline SINT UDINT_TO_SINT(UDINT v)
+{
+   return static_cast<SINT>(v);
+}
+inline SINT ULINT_TO_SINT(ULINT v)
+{
+   return static_cast<SINT>(v);
+}
 
-// SINT promotion/demotion chain (widens: exact, narrows: wraps)
+inline UINT SINT_TO_UINT(SINT v)
+{
+   return static_cast<UINT>(v);
+}
+inline UINT INT_TO_UINT(INT v)
+{
+   return static_cast<UINT>(v);
+}
+inline UINT DINT_TO_UINT(DINT v)
+{
+   return static_cast<UINT>(v);
+}
+inline UINT LINT_TO_UINT(LINT v)
+{
+   return static_cast<UINT>(v);
+}
+inline INT UINT_TO_INT(UINT v)
+{
+   return static_cast<INT>(v);
+}
 
-inline DINT SINT_TO_DINT(SINT v) { return static_cast<DINT>(v); }
-inline LINT SINT_TO_LINT(SINT v) { return static_cast<LINT>(v); }
-inline SINT DINT_TO_SINT(DINT v) { return static_cast<SINT>(v); } // narrowing, wraps
-inline SINT LINT_TO_SINT(LINT v) { return static_cast<SINT>(v); } // narrowing, wraps
+inline UDINT SINT_TO_UDINT(SINT v)
+{
+   return static_cast<UDINT>(v);
+}
+inline UDINT INT_TO_UDINT(INT v)
+{
+   return static_cast<UDINT>(v);
+}
+inline UDINT DINT_TO_UDINT(DINT v)
+{
+   return static_cast<UDINT>(v);
+}
+inline UDINT LINT_TO_UDINT(LINT v)
+{
+   return static_cast<UDINT>(v);
+}
+inline DINT UDINT_TO_DINT(UDINT v)
+{
+   return static_cast<DINT>(v);
+}
 
-// Integer -> Floating point (exact, no rounding needed)
+inline ULINT SINT_TO_ULINT(SINT v)
+{
+   return static_cast<ULINT>(v);
+}
+inline ULINT INT_TO_ULINT(INT v)
+{
+   return static_cast<ULINT>(v);
+}
+inline ULINT DINT_TO_ULINT(DINT v)
+{
+   return static_cast<ULINT>(v);
+}
+inline ULINT LINT_TO_ULINT(LINT v)
+{
+   return static_cast<ULINT>(v);
+}
+inline LINT ULINT_TO_LINT(ULINT v)
+{
+   return static_cast<LINT>(v);
+}
 
-inline REAL  INT_TO_REAL(INT v)   { return static_cast<REAL>(v); }
-inline REAL  DINT_TO_REAL(DINT v) { return static_cast<REAL>(v); }
-inline REAL  LINT_TO_REAL(LINT v) { return static_cast<REAL>(v); }
-inline REAL  SINT_TO_REAL(SINT v) { return static_cast<REAL>(v); }
+// ============================================================================
+// Integer -> Floating point
+// ============================================================================
 
-inline LREAL INT_TO_LREAL(INT v)   { return static_cast<LREAL>(v); }
-inline LREAL DINT_TO_LREAL(DINT v) { return static_cast<LREAL>(v); }
-inline LREAL LINT_TO_LREAL(LINT v) { return static_cast<LREAL>(v); }
-inline LREAL SINT_TO_LREAL(SINT v) { return static_cast<LREAL>(v); }
+inline REAL SINT_TO_REAL(SINT v)
+{
+   return static_cast<REAL>(v);
+}
+inline REAL INT_TO_REAL(INT v)
+{
+   return static_cast<REAL>(v);
+}
+inline REAL DINT_TO_REAL(DINT v)
+{
+   return static_cast<REAL>(v);
+}
+inline REAL LINT_TO_REAL(LINT v)
+{
+   return static_cast<REAL>(v);
+}
+inline REAL USINT_TO_REAL(USINT v)
+{
+   return static_cast<REAL>(v);
+}
+inline REAL UINT_TO_REAL(UINT v)
+{
+   return static_cast<REAL>(v);
+}
+inline REAL UDINT_TO_REAL(UDINT v)
+{
+   return static_cast<REAL>(v);
+}
+inline REAL ULINT_TO_REAL(ULINT v)
+{
+   return static_cast<REAL>(v);
+}
 
+inline LREAL SINT_TO_LREAL(SINT v)
+{
+   return static_cast<LREAL>(v);
+}
+inline LREAL INT_TO_LREAL(INT v)
+{
+   return static_cast<LREAL>(v);
+}
+inline LREAL DINT_TO_LREAL(DINT v)
+{
+   return static_cast<LREAL>(v);
+}
+inline LREAL LINT_TO_LREAL(LINT v)
+{
+   return static_cast<LREAL>(v);
+}
+inline LREAL USINT_TO_LREAL(USINT v)
+{
+   return static_cast<LREAL>(v);
+}
+inline LREAL UINT_TO_LREAL(UINT v)
+{
+   return static_cast<LREAL>(v);
+}
+inline LREAL UDINT_TO_LREAL(UDINT v)
+{
+   return static_cast<LREAL>(v);
+}
+inline LREAL ULINT_TO_LREAL(ULINT v)
+{
+   return static_cast<LREAL>(v);
+}
+
+// ============================================================================
 // Floating point -> Integer (IEC rounding: nearest, ties away from zero)
+// ============================================================================
 
-inline INT  REAL_TO_INT(REAL v)   { return static_cast<INT>(detail::iecRound(v)); }
-inline DINT REAL_TO_DINT(REAL v)  { return static_cast<DINT>(detail::iecRound(v)); }
-inline LINT REAL_TO_LINT(REAL v)  { return static_cast<LINT>(detail::iecRound(v)); }
-inline SINT REAL_TO_SINT(REAL v)  { return static_cast<SINT>(detail::iecRound(v)); }
+inline SINT REAL_TO_SINT(REAL v)
+{
+   return static_cast<SINT>(detail::iecRound(v));
+}
+inline INT REAL_TO_INT(REAL v)
+{
+   return static_cast<INT>(detail::iecRound(v));
+}
+inline DINT REAL_TO_DINT(REAL v)
+{
+   return static_cast<DINT>(detail::iecRound(v));
+}
+inline LINT REAL_TO_LINT(REAL v)
+{
+   return static_cast<LINT>(detail::iecRound(v));
+}
+inline USINT REAL_TO_USINT(REAL v)
+{
+   return static_cast<USINT>(detail::iecRound(v));
+}
+inline UINT REAL_TO_UINT(REAL v)
+{
+   return static_cast<UINT>(detail::iecRound(v));
+}
+inline UDINT REAL_TO_UDINT(REAL v)
+{
+   return static_cast<UDINT>(detail::iecRound(v));
+}
+inline ULINT REAL_TO_ULINT(REAL v)
+{
+   return static_cast<ULINT>(detail::iecRound(v));
+}
 
-inline INT  LREAL_TO_INT(LREAL v) { return static_cast<INT>(detail::iecRound(v)); }
-inline DINT LREAL_TO_DINT(LREAL v){ return static_cast<DINT>(detail::iecRound(v)); }
-inline LINT LREAL_TO_LINT(LREAL v){ return static_cast<LINT>(detail::iecRound(v)); }
-inline SINT LREAL_TO_SINT(LREAL v){ return static_cast<SINT>(detail::iecRound(v)); }
+inline SINT LREAL_TO_SINT(LREAL v)
+{
+   return static_cast<SINT>(detail::iecRound(v));
+}
+inline INT LREAL_TO_INT(LREAL v)
+{
+   return static_cast<INT>(detail::iecRound(v));
+}
+inline DINT LREAL_TO_DINT(LREAL v)
+{
+   return static_cast<DINT>(detail::iecRound(v));
+}
+inline LINT LREAL_TO_LINT(LREAL v)
+{
+   return static_cast<LINT>(detail::iecRound(v));
+}
+inline USINT LREAL_TO_USINT(LREAL v)
+{
+   return static_cast<USINT>(detail::iecRound(v));
+}
+inline UINT LREAL_TO_UINT(LREAL v)
+{
+   return static_cast<UINT>(detail::iecRound(v));
+}
+inline UDINT LREAL_TO_UDINT(LREAL v)
+{
+   return static_cast<UDINT>(detail::iecRound(v));
+}
+inline ULINT LREAL_TO_ULINT(LREAL v)
+{
+   return static_cast<ULINT>(detail::iecRound(v));
+}
 
-/*
- * Floating point -> Integer (explicit truncation, non-IEC-default)
- * Use only when the ST source explicitly calls TRUNC()
- */
+// ============================================================================
+// Floating point -> Integer (explicit truncation, non-IEC-default)
+// ============================================================================
 
-inline DINT TRUNC(REAL v)  { return static_cast<DINT>(v); }
-inline LINT TRUNC(LREAL v) { return static_cast<LINT>(v); }
+inline SINT TRUNC_SINT(REAL v)
+{
+   return static_cast<SINT>(v);
+}
+inline INT TRUNC_INT(REAL v)
+{
+   return static_cast<INT>(v);
+}
+inline DINT TRUNC_DINT(REAL v)
+{
+   return static_cast<DINT>(v);
+}
+inline LINT TRUNC_LINT(REAL v)
+{
+   return static_cast<LINT>(v);
+}
+inline USINT TRUNC_USINT(REAL v)
+{
+   return static_cast<USINT>(v);
+}
+inline UINT TRUNC_UINT(REAL v)
+{
+   return static_cast<UINT>(v);
+}
+inline UDINT TRUNC_UDINT(REAL v)
+{
+   return static_cast<UDINT>(v);
+}
+inline ULINT TRUNC_ULINT(REAL v)
+{
+   return static_cast<ULINT>(v);
+}
 
+inline SINT TRUNC_LREAL_SINT(LREAL v)
+{
+   return static_cast<SINT>(v);
+}
+inline INT TRUNC_LREAL_INT(LREAL v)
+{
+   return static_cast<INT>(v);
+}
+inline DINT TRUNC_LREAL_DINT(LREAL v)
+{
+   return static_cast<DINT>(v);
+}
+inline LINT TRUNC_LREAL_LINT(LREAL v)
+{
+   return static_cast<LINT>(v);
+}
+inline USINT TRUNC_LREAL_USINT(LREAL v)
+{
+   return static_cast<USINT>(v);
+}
+inline UINT TRUNC_LREAL_UINT(LREAL v)
+{
+   return static_cast<UINT>(v);
+}
+inline UDINT TRUNC_LREAL_UDINT(LREAL v)
+{
+   return static_cast<UDINT>(v);
+}
+inline ULINT TRUNC_LREAL_ULINT(LREAL v)
+{
+   return static_cast<ULINT>(v);
+}
+
+// ============================================================================
 // Floating point <-> Floating point
+// ============================================================================
 
-inline LREAL REAL_TO_LREAL(REAL v)  { return static_cast<LREAL>(v); }
-inline REAL  LREAL_TO_REAL(LREAL v) { return static_cast<REAL>(v); } // may lose precision
+inline LREAL REAL_TO_LREAL(REAL v)
+{
+   return static_cast<LREAL>(v);
+}
+inline REAL LREAL_TO_REAL(LREAL v)
+{
+   return static_cast<REAL>(v);
+}
 
+// ============================================================================
 // Boolean <-> Integer
+// ============================================================================
 
-inline BOOL INT_TO_BOOL(INT v)   { return v != 0; }
-inline INT  BOOL_TO_INT(BOOL v)  { return v ? 1 : 0; }
-inline BOOL DINT_TO_BOOL(DINT v) { return v != 0; }
-inline DINT BOOL_TO_DINT(BOOL v) { return v ? 1 : 0; }
+inline BOOL SINT_TO_BOOL(SINT v)
+{
+   return v != 0;
+}
+inline BOOL INT_TO_BOOL(INT v)
+{
+   return v != 0;
+}
+inline BOOL DINT_TO_BOOL(DINT v)
+{
+   return v != 0;
+}
+inline BOOL LINT_TO_BOOL(LINT v)
+{
+   return v != 0;
+}
+inline SINT BOOL_TO_SINT(BOOL v)
+{
+   return v ? 1 : 0;
+}
+inline INT BOOL_TO_INT(BOOL v)
+{
+   return v ? 1 : 0;
+}
+inline DINT BOOL_TO_DINT(BOOL v)
+{
+   return v ? 1 : 0;
+}
+inline LINT BOOL_TO_LINT(BOOL v)
+{
+   return v ? 1 : 0;
+}
 
-// Bit strings <-> Integer (reinterpretation, same width, no value change)
+inline BOOL USINT_TO_BOOL(USINT v)
+{
+   return v != 0;
+}
+inline BOOL UINT_TO_BOOL(UINT v)
+{
+   return v != 0;
+}
+inline BOOL UDINT_TO_BOOL(UDINT v)
+{
+   return v != 0;
+}
+inline BOOL ULINT_TO_BOOL(ULINT v)
+{
+   return v != 0;
+}
+inline USINT BOOL_TO_USINT(BOOL v)
+{
+   return v ? 1 : 0;
+}
+inline UINT BOOL_TO_UINT(BOOL v)
+{
+   return v ? 1 : 0;
+}
+inline UDINT BOOL_TO_UDINT(BOOL v)
+{
+   return v ? 1 : 0;
+}
+inline ULINT BOOL_TO_ULINT(BOOL v)
+{
+   return v ? 1 : 0;
+}
 
-inline WORD  INT_TO_WORD(INT v)   { return static_cast<WORD>(v); }
-inline INT   WORD_TO_INT(WORD v)  { return static_cast<INT>(v); }
-inline DWORD DINT_TO_DWORD(DINT v){ return static_cast<DWORD>(v); }
-inline DINT  DWORD_TO_DINT(DWORD v){ return static_cast<DINT>(v); }
-inline LWORD LINT_TO_LWORD(LINT v){ return static_cast<LWORD>(v); }
-inline LINT  LWORD_TO_LINT(LWORD v){ return static_cast<LINT>(v); }
+// ============================================================================
+// Bit strings <-> Integer
+// ============================================================================
 
-inline BYTE  SINT_TO_BYTE(SINT v) { return static_cast<BYTE>(v); }
-inline SINT  BYTE_TO_SINT(BYTE v) { return static_cast<SINT>(v); }
+// Byte <-> Integer
+inline BYTE SINT_TO_BYTE(SINT v)
+{
+   return static_cast<BYTE>(v);
+}
+inline BYTE INT_TO_BYTE(INT v)
+{
+   return static_cast<BYTE>(v);
+}
+inline BYTE DINT_TO_BYTE(DINT v)
+{
+   return static_cast<BYTE>(v);
+}
+inline BYTE LINT_TO_BYTE(LINT v)
+{
+   return static_cast<BYTE>(v);
+}
+inline BYTE USINT_TO_BYTE(USINT v)
+{
+   return static_cast<BYTE>(v);
+}
+inline BYTE UINT_TO_BYTE(UINT v)
+{
+   return static_cast<BYTE>(v);
+}
+inline BYTE UDINT_TO_BYTE(UDINT v)
+{
+   return static_cast<BYTE>(v);
+}
+inline BYTE ULINT_TO_BYTE(ULINT v)
+{
+   return static_cast<BYTE>(v);
+}
+inline SINT BYTE_TO_SINT(BYTE v)
+{
+   return static_cast<SINT>(v);
+}
+inline INT BYTE_TO_INT(BYTE v)
+{
+   return static_cast<INT>(v);
+}
+inline DINT BYTE_TO_DINT(BYTE v)
+{
+   return static_cast<DINT>(v);
+}
+inline LINT BYTE_TO_LINT(BYTE v)
+{
+   return static_cast<LINT>(v);
+}
+inline USINT BYTE_TO_USINT(BYTE v)
+{
+   return static_cast<USINT>(v);
+}
+inline UINT BYTE_TO_UINT(BYTE v)
+{
+   return static_cast<UINT>(v);
+}
+inline UDINT BYTE_TO_UDINT(BYTE v)
+{
+   return static_cast<UDINT>(v);
+}
+inline ULINT BYTE_TO_ULINT(BYTE v)
+{
+   return static_cast<ULINT>(v);
+}
 
-/*
- * BCD conversions (Binary-Coded Decimal)
- * Common in industrial displays, rotary encoders, thumbwheel switches.
- * Each nibble (4 bits) encodes one decimal digit [0..9].
+// Word <-> Integer
+inline WORD SINT_TO_WORD(SINT v)
+{
+   return static_cast<WORD>(v);
+}
+inline WORD INT_TO_WORD(INT v)
+{
+   return static_cast<WORD>(v);
+}
+inline WORD DINT_TO_WORD(DINT v)
+{
+   return static_cast<WORD>(v);
+}
+inline WORD LINT_TO_WORD(LINT v)
+{
+   return static_cast<WORD>(v);
+}
+inline WORD USINT_TO_WORD(USINT v)
+{
+   return static_cast<WORD>(v);
+}
+inline WORD UINT_TO_WORD(UINT v)
+{
+   return static_cast<WORD>(v);
+}
+inline WORD UDINT_TO_WORD(UDINT v)
+{
+   return static_cast<WORD>(v);
+}
+inline WORD ULINT_TO_WORD(ULINT v)
+{
+   return static_cast<WORD>(v);
+}
+inline SINT WORD_TO_SINT(WORD v)
+{
+   return static_cast<SINT>(v);
+}
+inline INT WORD_TO_INT(WORD v)
+{
+   return static_cast<INT>(v);
+}
+inline DINT WORD_TO_DINT(WORD v)
+{
+   return static_cast<DINT>(v);
+}
+inline LINT WORD_TO_LINT(WORD v)
+{
+   return static_cast<LINT>(v);
+}
+inline USINT WORD_TO_USINT(WORD v)
+{
+   return static_cast<USINT>(v);
+}
+inline UINT WORD_TO_UINT(WORD v)
+{
+   return static_cast<UINT>(v);
+}
+inline UDINT WORD_TO_UDINT(WORD v)
+{
+   return static_cast<UDINT>(v);
+}
+inline ULINT WORD_TO_ULINT(WORD v)
+{
+   return static_cast<ULINT>(v);
+}
+
+// DWord <-> Integer
+inline DWORD SINT_TO_DWORD(SINT v)
+{
+   return static_cast<DWORD>(v);
+}
+inline DWORD INT_TO_DWORD(INT v)
+{
+   return static_cast<DWORD>(v);
+}
+inline DWORD DINT_TO_DWORD(DINT v)
+{
+   return static_cast<DWORD>(v);
+}
+inline DWORD LINT_TO_DWORD(LINT v)
+{
+   return static_cast<DWORD>(v);
+}
+inline DWORD USINT_TO_DWORD(USINT v)
+{
+   return static_cast<DWORD>(v);
+}
+inline DWORD UINT_TO_DWORD(UINT v)
+{
+   return static_cast<DWORD>(v);
+}
+inline DWORD UDINT_TO_DWORD(UDINT v)
+{
+   return static_cast<DWORD>(v);
+}
+inline DWORD ULINT_TO_DWORD(ULINT v)
+{
+   return static_cast<DWORD>(v);
+}
+inline SINT DWORD_TO_SINT(DWORD v)
+{
+   return static_cast<SINT>(v);
+}
+inline INT DWORD_TO_INT(DWORD v)
+{
+   return static_cast<INT>(v);
+}
+inline DINT DWORD_TO_DINT(DWORD v)
+{
+   return static_cast<DINT>(v);
+}
+inline LINT DWORD_TO_LINT(DWORD v)
+{
+   return static_cast<LINT>(v);
+}
+inline USINT DWORD_TO_USINT(DWORD v)
+{
+   return static_cast<USINT>(v);
+}
+inline UINT DWORD_TO_UINT(DWORD v)
+{
+   return static_cast<UINT>(v);
+}
+inline UDINT DWORD_TO_UDINT(DWORD v)
+{
+   return static_cast<UDINT>(v);
+}
+inline ULINT DWORD_TO_ULINT(DWORD v)
+{
+   return static_cast<ULINT>(v);
+}
+
+// LWord <-> Integer
+inline LWORD SINT_TO_LWORD(SINT v)
+{
+   return static_cast<LWORD>(v);
+}
+inline LWORD INT_TO_LWORD(INT v)
+{
+   return static_cast<LWORD>(v);
+}
+inline LWORD DINT_TO_LWORD(DINT v)
+{
+   return static_cast<LWORD>(v);
+}
+inline LWORD LINT_TO_LWORD(LINT v)
+{
+   return static_cast<LWORD>(v);
+}
+inline LWORD USINT_TO_LWORD(USINT v)
+{
+   return static_cast<LWORD>(v);
+}
+inline LWORD UINT_TO_LWORD(UINT v)
+{
+   return static_cast<LWORD>(v);
+}
+inline LWORD UDINT_TO_LWORD(UDINT v)
+{
+   return static_cast<LWORD>(v);
+}
+inline LWORD ULINT_TO_LWORD(ULINT v)
+{
+   return static_cast<LWORD>(v);
+}
+inline SINT LWORD_TO_SINT(LWORD v)
+{
+   return static_cast<SINT>(v);
+}
+inline INT LWORD_TO_INT(LWORD v)
+{
+   return static_cast<INT>(v);
+}
+inline DINT LWORD_TO_DINT(LWORD v)
+{
+   return static_cast<DINT>(v);
+}
+inline LINT LWORD_TO_LINT(LWORD v)
+{
+   return static_cast<LINT>(v);
+}
+inline USINT LWORD_TO_USINT(LWORD v)
+{
+   return static_cast<USINT>(v);
+}
+inline UINT LWORD_TO_UINT(LWORD v)
+{
+   return static_cast<UINT>(v);
+}
+inline UDINT LWORD_TO_UDINT(LWORD v)
+{
+   return static_cast<UDINT>(v);
+}
+inline ULINT LWORD_TO_ULINT(LWORD v)
+{
+   return static_cast<ULINT>(v);
+}
+
+// ============================================================================
+// Bit strings <-> Bit strings
+// ============================================================================
+
+inline WORD BYTE_TO_WORD(BYTE v)
+{
+   return static_cast<WORD>(v);
+}
+inline DWORD BYTE_TO_DWORD(BYTE v)
+{
+   return static_cast<DWORD>(v);
+}
+inline LWORD BYTE_TO_LWORD(BYTE v)
+{
+   return static_cast<LWORD>(v);
+}
+inline BYTE WORD_TO_BYTE(WORD v)
+{
+   return static_cast<BYTE>(v);
+}
+inline DWORD WORD_TO_DWORD(WORD v)
+{
+   return static_cast<DWORD>(v);
+}
+inline LWORD WORD_TO_LWORD(WORD v)
+{
+   return static_cast<LWORD>(v);
+}
+inline BYTE DWORD_TO_BYTE(DWORD v)
+{
+   return static_cast<BYTE>(v);
+}
+inline WORD DWORD_TO_WORD(DWORD v)
+{
+   return static_cast<WORD>(v);
+}
+inline LWORD DWORD_TO_LWORD(DWORD v)
+{
+   return static_cast<LWORD>(v);
+}
+inline BYTE LWORD_TO_BYTE(LWORD v)
+{
+   return static_cast<BYTE>(v);
+}
+inline WORD LWORD_TO_WORD(LWORD v)
+{
+   return static_cast<WORD>(v);
+}
+inline DWORD LWORD_TO_DWORD(LWORD v)
+{
+   return static_cast<DWORD>(v);
+}
+
+// ============================================================================
+// Boolean <-> Bit strings
+// ============================================================================
+
+inline BYTE BOOL_TO_BYTE(BOOL v)
+{
+   return v ? 1 : 0;
+}
+inline WORD BOOL_TO_WORD(BOOL v)
+{
+   return v ? 1 : 0;
+}
+inline DWORD BOOL_TO_DWORD(BOOL v)
+{
+   return v ? 1 : 0;
+}
+inline LWORD BOOL_TO_LWORD(BOOL v)
+{
+   return v ? 1 : 0;
+}
+inline BOOL BYTE_TO_BOOL(BYTE v)
+{
+   return v != 0;
+}
+inline BOOL WORD_TO_BOOL(WORD v)
+{
+   return v != 0;
+}
+inline BOOL DWORD_TO_BOOL(DWORD v)
+{
+   return v != 0;
+}
+inline BOOL LWORD_TO_BOOL(LWORD v)
+{
+   return v != 0;
+}
+
+// ============================================================================
+// String <-> Numeric conversions
+// ============================================================================
+
+inline STRING SINT_TO_STRING(SINT v)
+{
+   return std::to_string(v);
+}
+inline STRING INT_TO_STRING(INT v)
+{
+   return std::to_string(v);
+}
+inline STRING DINT_TO_STRING(DINT v)
+{
+   return std::to_string(v);
+}
+inline STRING LINT_TO_STRING(LINT v)
+{
+   return std::to_string(v);
+}
+inline STRING USINT_TO_STRING(USINT v)
+{
+   return std::to_string(v);
+}
+inline STRING UINT_TO_STRING(UINT v)
+{
+   return std::to_string(v);
+}
+inline STRING UDINT_TO_STRING(UDINT v)
+{
+   return std::to_string(v);
+}
+inline STRING ULINT_TO_STRING(ULINT v)
+{
+   return std::to_string(v);
+}
+inline STRING REAL_TO_STRING(REAL v)
+{
+   return std::to_string(v);
+}
+inline STRING LREAL_TO_STRING(LREAL v)
+{
+   return std::to_string(v);
+}
+inline STRING BOOL_TO_STRING(BOOL v)
+{
+   return v ? "TRUE" : "FALSE";
+}
+
+inline SINT STRING_TO_SINT(const STRING& s)
+{
+   return static_cast<SINT>(std::stoi(s));
+}
+inline INT STRING_TO_INT(const STRING& s)
+{
+   return static_cast<INT>(std::stoi(s));
+}
+inline DINT STRING_TO_DINT(const STRING& s)
+{
+   return static_cast<DINT>(std::stol(s));
+}
+inline LINT STRING_TO_LINT(const STRING& s)
+{
+   return static_cast<LINT>(std::stoll(s));
+}
+inline USINT STRING_TO_USINT(const STRING& s)
+{
+   return static_cast<USINT>(std::stoul(s));
+}
+inline UINT STRING_TO_UINT(const STRING& s)
+{
+   return static_cast<UINT>(std::stoul(s));
+}
+inline UDINT STRING_TO_UDINT(const STRING& s)
+{
+   return static_cast<UDINT>(std::stoul(s));
+}
+inline ULINT STRING_TO_ULINT(const STRING& s)
+{
+   return static_cast<ULINT>(std::stoull(s));
+}
+inline REAL STRING_TO_REAL(const STRING& s)
+{
+   return static_cast<REAL>(std::stof(s));
+}
+inline LREAL STRING_TO_LREAL(const STRING& s)
+{
+   return std::stod(s);
+}
+inline BOOL STRING_TO_BOOL(const STRING& s)
+{
+   return (s == "TRUE" || s == "true" || s == "1");
+}
+
+// String <-> Bit strings
+inline BYTE STRING_TO_BYTE(const STRING& s)
+{
+   return static_cast<BYTE>(std::stoi(s));
+}
+inline WORD STRING_TO_WORD(const STRING& s)
+{
+   return static_cast<WORD>(std::stoi(s));
+}
+inline DWORD STRING_TO_DWORD(const STRING& s)
+{
+   return static_cast<DWORD>(std::stol(s));
+}
+inline LWORD STRING_TO_LWORD(const STRING& s)
+{
+   return static_cast<LWORD>(std::stoll(s));
+}
+inline STRING BYTE_TO_STRING(BYTE v)
+{
+   return std::to_string(v);
+}
+inline STRING WORD_TO_STRING(WORD v)
+{
+   return std::to_string(v);
+}
+inline STRING DWORD_TO_STRING(DWORD v)
+{
+   return std::to_string(v);
+}
+inline STRING LWORD_TO_STRING(LWORD v)
+{
+   return std::to_string(v);
+}
+
+// ============================================================================
+// String <-> WString (width conversion)
+// ============================================================================
+
+/**
+ * @brief Convert WSTRING to STRING by narrowing each character
+ * @throws std::range_error if any character exceeds 0xFF (non Latin-1)
  */
+inline STRING WSTRING_TO_STRING(const WSTRING& ws)
+{
+   STRING result;
+   result.reserve(ws.size());
+   for (wchar_t wc : ws) {
+      if (static_cast<unsigned long>(wc) > 0xFF) {
+         throw std::range_error("WSTRING_TO_STRING: character out of Latin-1 range");
+      }
+      result.push_back(static_cast<char>(wc));
+   }
+   return result;
+}
+
+/**
+ * @brief Convert STRING to WSTRING by widening each character
+ */
+inline WSTRING STRING_TO_WSTRING(const STRING& s)
+{
+   WSTRING result;
+   result.reserve(s.size());
+   for (unsigned char c : s) {
+      result.push_back(static_cast<wchar_t>(c));
+   }
+   return result;
+}
+
+// ============================================================================
+// TO_<type> conversions (generic template versions)
+// ============================================================================
+
+/**
+ * @brief Generic TO_* conversion functions
+ * 
+ * These functions provide a unified interface for type conversions:
+ *   TO_BOOL(x), TO_SINT(x), TO_INT(x), TO_DINT(x), TO_LINT(x)
+ *   TO_USINT(x), TO_UINT(x), TO_UDINT(x), TO_ULINT(x)
+ *   TO_REAL(x), TO_LREAL(x)
+ *   TO_BYTE(x), TO_WORD(x), TO_DWORD(x), TO_LWORD(x)
+ *   TO_STRING(x), TO_WSTRING(x)
+ * 
+ * @tparam T Target type
+ * @param v Value to convert
+ * @return Converted value
+ */
+
+// Boolean conversions
+template<typename T>
+inline BOOL TO_BOOL(T v)
+{
+   return v != 0;
+}
+
+// Signed integer conversions
+template<typename T>
+inline SINT TO_SINT(T v)
+{
+   return static_cast<SINT>(v);
+}
+
+template<typename T>
+inline INT TO_INT(T v)
+{
+   return static_cast<INT>(v);
+}
+
+template<typename T>
+inline DINT TO_DINT(T v)
+{
+   return static_cast<DINT>(v);
+}
+
+template<typename T>
+inline LINT TO_LINT(T v)
+{
+   return static_cast<LINT>(v);
+}
+
+// Unsigned integer conversions
+template<typename T>
+inline USINT TO_USINT(T v)
+{
+   return static_cast<USINT>(v);
+}
+
+template<typename T>
+inline UINT TO_UINT(T v)
+{
+   return static_cast<UINT>(v);
+}
+
+template<typename T>
+inline UDINT TO_UDINT(T v)
+{
+   return static_cast<UDINT>(v);
+}
+
+template<typename T>
+inline ULINT TO_ULINT(T v)
+{
+   return static_cast<ULINT>(v);
+}
+
+// Floating point conversions
+template<typename T>
+inline REAL TO_REAL(T v)
+{
+   return static_cast<REAL>(v);
+}
+
+template<typename T>
+inline LREAL TO_LREAL(T v)
+{
+   return static_cast<LREAL>(v);
+}
+
+// Bit string conversions
+template<typename T>
+inline BYTE TO_BYTE(T v)
+{
+   return static_cast<BYTE>(v);
+}
+
+template<typename T>
+inline WORD TO_WORD(T v)
+{
+   return static_cast<WORD>(v);
+}
+
+template<typename T>
+inline DWORD TO_DWORD(T v)
+{
+   return static_cast<DWORD>(v);
+}
+
+template<typename T>
+inline LWORD TO_LWORD(T v)
+{
+   return static_cast<LWORD>(v);
+}
+
+// String conversions (special handling for non-numeric types)
+template<typename T>
+inline STRING TO_STRING(T v)
+{
+   return std::to_string(v);
+}
+
+// Specialization for BOOL
+template<>
+inline STRING TO_STRING(BOOL v)
+{
+   return v ? "TRUE" : "FALSE";
+}
+
+// WSTRING conversions (only for string types)
+inline WSTRING TO_WSTRING(const STRING& s)
+{
+   return STRING_TO_WSTRING(s);
+}
+
+inline WSTRING TO_WSTRING(const WSTRING& ws)
+{
+   return ws;
+}
+
+// For numeric types to WSTRING, convert to STRING first
+template<typename T>
+inline WSTRING TO_WSTRING(T v)
+{
+   return STRING_TO_WSTRING(TO_STRING(v));
+}
+
+// ============================================================================
+// TO_<type> conversions with rounding (for floating point to integer)
+// ============================================================================
+
+/**
+ * @brief TO_* conversions with IEC rounding (nearest, ties away from zero)
+ * 
+ * These versions apply IEC 61131-3 rounding semantics when converting
+ * from floating point to integer types.
+ * 
+ * Usage: TO_DINT_ROUND(x) instead of TO_DINT(x)
+ */
+
+// Signed integer with rounding
+template<typename T>
+inline SINT TO_SINT_ROUND(T v)
+{
+   if constexpr (std::is_floating_point_v<T>) {
+      return static_cast<SINT>(detail::iecRound(v));
+   } else {
+      return static_cast<SINT>(v);
+   }
+}
+
+template<typename T>
+inline INT TO_INT_ROUND(T v)
+{
+   if constexpr (std::is_floating_point_v<T>) {
+      return static_cast<INT>(detail::iecRound(v));
+   } else {
+      return static_cast<INT>(v);
+   }
+}
+
+template<typename T>
+inline DINT TO_DINT_ROUND(T v)
+{
+   if constexpr (std::is_floating_point_v<T>) {
+      return static_cast<DINT>(detail::iecRound(v));
+   } else {
+      return static_cast<DINT>(v);
+   }
+}
+
+template<typename T>
+inline LINT TO_LINT_ROUND(T v)
+{
+   if constexpr (std::is_floating_point_v<T>) {
+      return static_cast<LINT>(detail::iecRound(v));
+   } else {
+      return static_cast<LINT>(v);
+   }
+}
+
+// Unsigned integer with rounding
+template<typename T>
+inline USINT TO_USINT_ROUND(T v)
+{
+   if constexpr (std::is_floating_point_v<T>) {
+      return static_cast<USINT>(detail::iecRound(v));
+   } else {
+      return static_cast<USINT>(v);
+   }
+}
+
+template<typename T>
+inline UINT TO_UINT_ROUND(T v)
+{
+   if constexpr (std::is_floating_point_v<T>) {
+      return static_cast<UINT>(detail::iecRound(v));
+   } else {
+      return static_cast<UINT>(v);
+   }
+}
+
+template<typename T>
+inline UDINT TO_UDINT_ROUND(T v)
+{
+   if constexpr (std::is_floating_point_v<T>) {
+      return static_cast<UDINT>(detail::iecRound(v));
+   } else {
+      return static_cast<UDINT>(v);
+   }
+}
+
+template<typename T>
+inline ULINT TO_ULINT_ROUND(T v)
+{
+   if constexpr (std::is_floating_point_v<T>) {
+      return static_cast<ULINT>(detail::iecRound(v));
+   } else {
+      return static_cast<ULINT>(v);
+   }
+}
+
+// ============================================================================
+// TO_<type> conversions with truncation
+// ============================================================================
+
+/**
+ * @brief TO_* conversions with truncation (toward zero)
+ * 
+ * These versions truncate toward zero when converting from floating point
+ * to integer types.
+ * 
+ * Usage: TO_DINT_TRUNC(x) instead of TO_DINT(x)
+ */
+
+template<typename T>
+inline SINT TO_SINT_TRUNC(T v)
+{
+   if constexpr (std::is_floating_point_v<T>) {
+      return static_cast<SINT>(v);
+   } else {
+      return static_cast<SINT>(v);
+   }
+}
+
+template<typename T>
+inline INT TO_INT_TRUNC(T v)
+{
+   if constexpr (std::is_floating_point_v<T>) {
+      return static_cast<INT>(v);
+   } else {
+      return static_cast<INT>(v);
+   }
+}
+
+template<typename T>
+inline DINT TO_DINT_TRUNC(T v)
+{
+   if constexpr (std::is_floating_point_v<T>) {
+      return static_cast<DINT>(v);
+   } else {
+      return static_cast<DINT>(v);
+   }
+}
+
+template<typename T>
+inline LINT TO_LINT_TRUNC(T v)
+{
+   if constexpr (std::is_floating_point_v<T>) {
+      return static_cast<LINT>(v);
+   } else {
+      return static_cast<LINT>(v);
+   }
+}
+
+template<typename T>
+inline USINT TO_USINT_TRUNC(T v)
+{
+   if constexpr (std::is_floating_point_v<T>) {
+      return static_cast<USINT>(v);
+   } else {
+      return static_cast<USINT>(v);
+   }
+}
+
+template<typename T>
+inline UINT TO_UINT_TRUNC(T v)
+{
+   if constexpr (std::is_floating_point_v<T>) {
+      return static_cast<UINT>(v);
+   } else {
+      return static_cast<UINT>(v);
+   }
+}
+
+template<typename T>
+inline UDINT TO_UDINT_TRUNC(T v)
+{
+   if constexpr (std::is_floating_point_v<T>) {
+      return static_cast<UDINT>(v);
+   } else {
+      return static_cast<UDINT>(v);
+   }
+}
+
+template<typename T>
+inline ULINT TO_ULINT_TRUNC(T v)
+{
+   if constexpr (std::is_floating_point_v<T>) {
+      return static_cast<ULINT>(v);
+   } else {
+      return static_cast<ULINT>(v);
+   }
+}
+
+// ============================================================================
+// BCD conversions (Binary-Coded Decimal)
+// ============================================================================
 
 /**
  * @brief Convert a BCD-encoded byte to its decimal value
@@ -140,12 +1408,12 @@ inline SINT  BYTE_TO_SINT(BYTE v) { return static_cast<SINT>(v); }
  */
 inline USINT BCD_TO_USINT(BYTE bcd)
 {
-    UInt8 lo = bcd & 0x0F;
-    UInt8 hi = (bcd >> 4) & 0x0F;
-    if (lo > 9 || hi > 9) {
-        throw std::invalid_argument("BCD_TO_USINT: invalid BCD digit");
-    }
-    return static_cast<USINT>(hi * 10 + lo);
+   UInt8 lo = bcd & 0x0F;
+   UInt8 hi = (bcd >> 4) & 0x0F;
+   if (lo > 9 || hi > 9) {
+      throw std::invalid_argument("BCD_TO_USINT: invalid BCD digit");
+   }
+   return static_cast<USINT>(hi * 10 + lo);
 }
 
 /**
@@ -154,10 +1422,10 @@ inline USINT BCD_TO_USINT(BYTE bcd)
  */
 inline BYTE USINT_TO_BCD(USINT value)
 {
-    if (value > 99) {
-        throw std::out_of_range("USINT_TO_BCD: value exceeds 2-digit BCD range");
-    }
-    return static_cast<BYTE>(((value / 10) << 4) | (value % 10));
+   if (value > 99) {
+      throw std::out_of_range("USINT_TO_BCD: value exceeds 2-digit BCD range");
+   }
+   return static_cast<BYTE>(((value / 10) << 4) | (value % 10));
 }
 
 /**
@@ -166,17 +1434,17 @@ inline BYTE USINT_TO_BCD(USINT value)
  */
 inline UINT BCD_TO_INT(WORD bcd)
 {
-    UInt16 result = 0;
-    UInt16 multiplier = 1;
-    for (int shift = 0; shift < 16; shift += 4) {
-        UInt16 nibble = (bcd >> shift) & 0x0F;
-        if (nibble > 9) {
-            throw std::invalid_argument("BCD_TO_INT: invalid BCD digit");
-        }
-        result += static_cast<UInt16>(nibble * multiplier);
-        multiplier *= 10;
-    }
-    return static_cast<UINT>(result);
+   UInt16 result = 0;
+   UInt16 multiplier = 1;
+   for (int shift = 0; shift < 16; shift += 4) {
+      UInt16 nibble = (bcd >> shift) & 0x0F;
+      if (nibble > 9) {
+         throw std::invalid_argument("BCD_TO_INT: invalid BCD digit");
+      }
+      result += static_cast<UInt16>(nibble * multiplier);
+      multiplier *= 10;
+   }
+   return static_cast<UINT>(result);
 }
 
 /**
@@ -185,100 +1453,94 @@ inline UINT BCD_TO_INT(WORD bcd)
  */
 inline WORD INT_TO_BCD(UINT value)
 {
-    if (value > 9999) {
-        throw std::out_of_range("INT_TO_BCD: value exceeds 4-digit BCD range");
-    }
-    UInt16 result = 0;
-    UInt16 v = value;
-    for (int shift = 0; shift < 16 && v > 0; shift += 4) {
-        result |= static_cast<UInt16>((v % 10) << shift);
-        v /= 10;
-    }
-    return static_cast<WORD>(result);
+   if (value > 9999) {
+      throw std::out_of_range("INT_TO_BCD: value exceeds 4-digit BCD range");
+   }
+   UInt16 result = 0;
+   UInt16 v = value;
+   for (int shift = 0; shift < 16 && v > 0; shift += 4) {
+      result |= static_cast<UInt16>((v % 10) << shift);
+      v /= 10;
+   }
+   return static_cast<WORD>(result);
 }
 
-// String <-> Numeric conversions
-
-inline STRING INT_TO_STRING(INT v)   { return std::to_string(v); }
-inline STRING DINT_TO_STRING(DINT v) { return std::to_string(v); }
-inline STRING LINT_TO_STRING(LINT v) { return std::to_string(v); }
-inline STRING REAL_TO_STRING(REAL v) { return std::to_string(v); }
-inline STRING LREAL_TO_STRING(LREAL v){ return std::to_string(v); }
-inline STRING BOOL_TO_STRING(BOOL v) { return v ? "TRUE" : "FALSE"; }
-
-/**
- * @brief STRING_TO_INT
- * @throws std::invalid_argument if the string does not contain a valid integer
- */
-inline INT STRING_TO_INT(const STRING& s)
-{
-    return static_cast<INT>(std::stoi(s));
-}
-
-inline DINT STRING_TO_DINT(const STRING& s)
-{
-    return static_cast<DINT>(std::stol(s));
-}
-
-inline REAL STRING_TO_REAL(const STRING& s)
-{
-    return static_cast<REAL>(std::stof(s));
-}
-
-inline LREAL STRING_TO_LREAL(const STRING& s)
-{
-    return std::stod(s);
-}
-
-inline BOOL STRING_TO_BOOL(const STRING& s)
-{
-    return (s == "TRUE" || s == "true" || s == "1");
-}
-
-/*
- * STRING <-> WSTRING (width conversion)
- *
- * NOTE: this is a minimal, locale-independent conversion intended for
- * ASCII/Latin-1 industrial text (tag names, alarm messages). It does not
- * perform full Unicode-aware transcoding. Revisit if multi-byte UTF-8
- * support becomes a requirement for HMI text.
- */
-
-/**
- * @brief Convert WSTRING to STRING by narrowing each character
- * @throws std::range_error if any character exceeds 0xFF (non Latin-1)
- */
-inline STRING WSTRING_TO_STRING(const WSTRING& ws)
-{
-    STRING result;
-    result.reserve(ws.size());
-    for (wchar_t wc : ws) {
-        if (static_cast<unsigned long>(wc) > 0xFF) {
-            throw std::range_error("WSTRING_TO_STRING: character out of Latin-1 range");
-        }
-        result.push_back(static_cast<char>(wc));
-    }
-    return result;
-}
-
-/**
- * @brief Convert STRING to WSTRING by widening each character
- */
-inline WSTRING STRING_TO_WSTRING(const STRING& s)
-{
-    WSTRING result;
-    result.reserve(s.size());
-    for (unsigned char c : s) {
-        result.push_back(static_cast<wchar_t>(c));
-    }
-    return result;
-}
-
+// ============================================================================
 // TIME conversions
+// ============================================================================
 
-inline TIME  DINT_TO_TIME(DINT v)  { return static_cast<TIME>(v); } // milliseconds
-inline DINT  TIME_TO_DINT(TIME v)  { return static_cast<DINT>(v); }
-inline STRING TIME_TO_STRING(TIME v) { return std::to_string(v) + "ms"; }
+inline TIME SINT_TO_TIME(SINT v)
+{
+   return static_cast<TIME>(v);
+}
+inline TIME INT_TO_TIME(INT v)
+{
+   return static_cast<TIME>(v);
+}
+inline TIME DINT_TO_TIME(DINT v)
+{
+   return static_cast<TIME>(v);
+}
+inline TIME LINT_TO_TIME(LINT v)
+{
+   return static_cast<TIME>(v);
+}
+inline TIME USINT_TO_TIME(USINT v)
+{
+   return static_cast<TIME>(v);
+}
+inline TIME UINT_TO_TIME(UINT v)
+{
+   return static_cast<TIME>(v);
+}
+inline TIME UDINT_TO_TIME(UDINT v)
+{
+   return static_cast<TIME>(v);
+}
+inline TIME ULINT_TO_TIME(ULINT v)
+{
+   return static_cast<TIME>(v);
+}
+inline SINT TIME_TO_SINT(TIME v)
+{
+   return static_cast<SINT>(v);
+}
+inline INT TIME_TO_INT(TIME v)
+{
+   return static_cast<INT>(v);
+}
+inline DINT TIME_TO_DINT(TIME v)
+{
+   return static_cast<DINT>(v);
+}
+inline LINT TIME_TO_LINT(TIME v)
+{
+   return static_cast<LINT>(v);
+}
+inline USINT TIME_TO_USINT(TIME v)
+{
+   return static_cast<USINT>(v);
+}
+inline UINT TIME_TO_UINT(TIME v)
+{
+   return static_cast<UINT>(v);
+}
+inline UDINT TIME_TO_UDINT(TIME v)
+{
+   return static_cast<UDINT>(v);
+}
+inline ULINT TIME_TO_ULINT(TIME v)
+{
+   return static_cast<ULINT>(v);
+}
+inline STRING TIME_TO_STRING(TIME v)
+{
+   return std::to_string(v) + "ms";
+}
+
+// ============================================================================
+// DATE / TIME_OF_DAY / DATE_AND_TIME conversions
+// ============================================================================
 
 /*
  * DATE / TIME_OF_DAY / DATE_AND_TIME conversions
@@ -296,13 +1558,13 @@ inline STRING TIME_TO_STRING(TIME v) { return std::to_string(v) + "ms"; }
  */
 inline DATE DT_TO_DATE(DT dt)
 {
-    std::time_t t = static_cast<std::time_t>(dt);
-    std::tm tmVal{};
-    gmtime_r(&t, &tmVal);
-    tmVal.tm_hour = 0;
-    tmVal.tm_min  = 0;
-    tmVal.tm_sec  = 0;
-    return static_cast<DATE>(timegm(&tmVal));
+   std::time_t t = static_cast<std::time_t>(dt);
+   std::tm tmVal{};
+   gmtime_r(&t, &tmVal);
+   tmVal.tm_hour = 0;
+   tmVal.tm_min = 0;
+   tmVal.tm_sec = 0;
+   return static_cast<DATE>(timegm(&tmVal));
 }
 
 /**
@@ -310,13 +1572,13 @@ inline DATE DT_TO_DATE(DT dt)
  */
 inline TOD DT_TO_TOD(DT dt)
 {
-    std::time_t t = static_cast<std::time_t>(dt);
-    std::tm tmVal{};
-    gmtime_r(&t, &tmVal);
-    UInt64 msOfDay = (static_cast<UInt64>(tmVal.tm_hour) * 3600ULL
-                    + static_cast<UInt64>(tmVal.tm_min)  * 60ULL
-                    + static_cast<UInt64>(tmVal.tm_sec)) * 1000ULL;
-    return static_cast<TOD>(msOfDay);
+   std::time_t t = static_cast<std::time_t>(dt);
+   std::tm tmVal{};
+   gmtime_r(&t, &tmVal);
+   UInt64 msOfDay = (static_cast<UInt64>(tmVal.tm_hour) * 3600ULL + static_cast<UInt64>(tmVal.tm_min) * 60ULL
+                     + static_cast<UInt64>(tmVal.tm_sec))
+                    * 1000ULL;
+   return static_cast<TOD>(msOfDay);
 }
 
 /**
@@ -324,7 +1586,7 @@ inline TOD DT_TO_TOD(DT dt)
  */
 inline DT DATE_TOD_TO_DT(DATE date, TOD tod)
 {
-    return static_cast<DT>(date) + static_cast<DT>(tod / 1000ULL);
+   return static_cast<DT>(date) + static_cast<DT>(tod / 1000ULL);
 }
 
 /**
@@ -332,7 +1594,24 @@ inline DT DATE_TOD_TO_DT(DATE date, TOD tod)
  */
 inline DT DATE_TO_DT(DATE date)
 {
-    return static_cast<DT>(date);
+   return static_cast<DT>(date);
+}
+
+/**
+ * @brief Convert DATE to TIME_OF_DAY (returns milliseconds since midnight, always 0 for a date)
+ */
+inline TOD DATE_TO_TOD(DATE date)
+{
+   (void) date;
+   return static_cast<TOD>(0);
+}
+
+/**
+ * @brief Convert TIME_OF_DAY to DATE (returns days since epoch)
+ */
+inline DATE TOD_TO_DATE(TOD tod)
+{
+   return static_cast<DATE>(tod / 86400000ULL);
 }
 
 /**
@@ -340,7 +1619,7 @@ inline DT DATE_TO_DT(DATE date)
  */
 inline TIME TOD_TO_TIME(TOD tod)
 {
-    return static_cast<TIME>(tod);
+   return static_cast<TIME>(tod);
 }
 
 /**
@@ -349,34 +1628,240 @@ inline TIME TOD_TO_TIME(TOD tod)
  */
 inline TOD TIME_TO_TOD(TIME t)
 {
-    return static_cast<TOD>(t);
+   return static_cast<TOD>(t);
 }
 
 inline STRING DATE_TO_STRING(DATE date)
 {
-    std::time_t t = static_cast<std::time_t>(date);
-    std::tm tmVal{};
-    gmtime_r(&t, &tmVal);
-    char buf[16];
-    std::snprintf(buf, sizeof(buf), "%04d-%02d-%02d",
-                  tmVal.tm_year + 1900, tmVal.tm_mon + 1, tmVal.tm_mday);
-    return STRING(buf);
+   std::time_t t = static_cast<std::time_t>(date);
+   std::tm tmVal{};
+   gmtime_r(&t, &tmVal);
+   char buf[16];
+   std::snprintf(buf, sizeof(buf), "%04d-%02d-%02d", tmVal.tm_year + 1900, tmVal.tm_mon + 1, tmVal.tm_mday);
+   return STRING(buf);
 }
 
 inline STRING TOD_TO_STRING(TOD tod)
 {
-    UInt64 totalMs = tod;
-    UInt32 h = static_cast<UInt32>(totalMs / 3600000ULL);
-    UInt32 m = static_cast<UInt32>((totalMs / 60000ULL) % 60ULL);
-    UInt32 s = static_cast<UInt32>((totalMs / 1000ULL) % 60ULL);
-    char buf[16];
-    std::snprintf(buf, sizeof(buf), "%02u:%02u:%02u", h, m, s);
-    return STRING(buf);
+   UInt64 totalMs = tod;
+   UInt32 h = static_cast<UInt32>(totalMs / 3600000ULL);
+   UInt32 m = static_cast<UInt32>((totalMs / 60000ULL) % 60ULL);
+   UInt32 s = static_cast<UInt32>((totalMs / 1000ULL) % 60ULL);
+   char buf[16];
+   std::snprintf(buf, sizeof(buf), "%02u:%02u:%02u", h, m, s);
+   return STRING(buf);
 }
 
 inline STRING DT_TO_STRING(DT dt)
 {
-    return DATE_TO_STRING(DT_TO_DATE(dt)) + "-" + TOD_TO_STRING(DT_TO_TOD(dt));
+   return DATE_TO_STRING(DT_TO_DATE(dt)) + "-" + TOD_TO_STRING(DT_TO_TOD(dt));
+}
+
+// ============================================================================
+// DATE <-> Integer conversions
+// ============================================================================
+
+inline DATE SINT_TO_DATE(SINT v)
+{
+   return static_cast<DATE>(v);
+}
+inline DATE INT_TO_DATE(INT v)
+{
+   return static_cast<DATE>(v);
+}
+inline DATE DINT_TO_DATE(DINT v)
+{
+   return static_cast<DATE>(v);
+}
+inline DATE LINT_TO_DATE(LINT v)
+{
+   return static_cast<DATE>(v);
+}
+inline DATE USINT_TO_DATE(USINT v)
+{
+   return static_cast<DATE>(v);
+}
+inline DATE UINT_TO_DATE(UINT v)
+{
+   return static_cast<DATE>(v);
+}
+inline DATE UDINT_TO_DATE(UDINT v)
+{
+   return static_cast<DATE>(v);
+}
+inline DATE ULINT_TO_DATE(ULINT v)
+{
+   return static_cast<DATE>(v);
+}
+inline SINT DATE_TO_SINT(DATE v)
+{
+   return static_cast<SINT>(v);
+}
+inline INT DATE_TO_INT(DATE v)
+{
+   return static_cast<INT>(v);
+}
+inline DINT DATE_TO_DINT(DATE v)
+{
+   return static_cast<DINT>(v);
+}
+inline LINT DATE_TO_LINT(DATE v)
+{
+   return static_cast<LINT>(v);
+}
+inline USINT DATE_TO_USINT(DATE v)
+{
+   return static_cast<USINT>(v);
+}
+inline UINT DATE_TO_UINT(DATE v)
+{
+   return static_cast<UINT>(v);
+}
+inline UDINT DATE_TO_UDINT(DATE v)
+{
+   return static_cast<UDINT>(v);
+}
+inline ULINT DATE_TO_ULINT(DATE v)
+{
+   return static_cast<ULINT>(v);
+}
+
+// ============================================================================
+// DT (DATE_AND_TIME) <-> Integer conversions
+// ============================================================================
+
+inline DT SINT_TO_DT(SINT v)
+{
+   return static_cast<DT>(v);
+}
+inline DT INT_TO_DT(INT v)
+{
+   return static_cast<DT>(v);
+}
+inline DT DINT_TO_DT(DINT v)
+{
+   return static_cast<DT>(v);
+}
+inline DT LINT_TO_DT(LINT v)
+{
+   return static_cast<DT>(v);
+}
+inline DT USINT_TO_DT(USINT v)
+{
+   return static_cast<DT>(v);
+}
+inline DT UINT_TO_DT(UINT v)
+{
+   return static_cast<DT>(v);
+}
+inline DT UDINT_TO_DT(UDINT v)
+{
+   return static_cast<DT>(v);
+}
+inline DT ULINT_TO_DT(ULINT v)
+{
+   return static_cast<DT>(v);
+}
+inline SINT DT_TO_SINT(DT v)
+{
+   return static_cast<SINT>(v);
+}
+inline INT DT_TO_INT(DT v)
+{
+   return static_cast<INT>(v);
+}
+inline DINT DT_TO_DINT(DT v)
+{
+   return static_cast<DINT>(v);
+}
+inline LINT DT_TO_LINT(DT v)
+{
+   return static_cast<LINT>(v);
+}
+inline USINT DT_TO_USINT(DT v)
+{
+   return static_cast<USINT>(v);
+}
+inline UINT DT_TO_UINT(DT v)
+{
+   return static_cast<UINT>(v);
+}
+inline UDINT DT_TO_UDINT(DT v)
+{
+   return static_cast<UDINT>(v);
+}
+inline ULINT DT_TO_ULINT(DT v)
+{
+   return static_cast<ULINT>(v);
+}
+
+// ============================================================================
+// TOD (TIME_OF_DAY) <-> Integer conversions
+// ============================================================================
+
+inline TOD SINT_TO_TOD(SINT v)
+{
+   return static_cast<TOD>(v);
+}
+inline TOD INT_TO_TOD(INT v)
+{
+   return static_cast<TOD>(v);
+}
+inline TOD DINT_TO_TOD(DINT v)
+{
+   return static_cast<TOD>(v);
+}
+inline TOD LINT_TO_TOD(LINT v)
+{
+   return static_cast<TOD>(v);
+}
+inline TOD USINT_TO_TOD(USINT v)
+{
+   return static_cast<TOD>(v);
+}
+inline TOD UINT_TO_TOD(UINT v)
+{
+   return static_cast<TOD>(v);
+}
+inline TOD UDINT_TO_TOD(UDINT v)
+{
+   return static_cast<TOD>(v);
+}
+inline TOD ULINT_TO_TOD(ULINT v)
+{
+   return static_cast<TOD>(v);
+}
+inline SINT TOD_TO_SINT(TOD v)
+{
+   return static_cast<SINT>(v);
+}
+inline INT TOD_TO_INT(TOD v)
+{
+   return static_cast<INT>(v);
+}
+inline DINT TOD_TO_DINT(TOD v)
+{
+   return static_cast<DINT>(v);
+}
+inline LINT TOD_TO_LINT(TOD v)
+{
+   return static_cast<LINT>(v);
+}
+inline USINT TOD_TO_USINT(TOD v)
+{
+   return static_cast<USINT>(v);
+}
+inline UINT TOD_TO_UINT(TOD v)
+{
+   return static_cast<UINT>(v);
+}
+inline UDINT TOD_TO_UDINT(TOD v)
+{
+   return static_cast<UDINT>(v);
+}
+inline ULINT TOD_TO_ULINT(TOD v)
+{
+   return static_cast<ULINT>(v);
 }
 
 } // namespace undoCore

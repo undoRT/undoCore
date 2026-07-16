@@ -16,3 +16,4 @@
 #include <undoCore/processImage.hpp>
 #include <undoCore/ioBus.hpp>
 #include <undoCore/conversions.hpp>
+#include <undoCore/undoMath.hpp>
