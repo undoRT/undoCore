@@ -141,13 +141,39 @@ struct STArray
    using const_iterator = typename std::array<T, SIZE>::const_iterator;
 
    // ===== Constructors =====
-   // All constructors are implicitly defined = default for trivial copyability
-   // The class is an aggregate, so brace initialization works natively
+   // All copy/move constructors are implicitly defined = default for trivial copyability
+   // Note: the class defines initializer_list constructors (like the validated
+   // STArray in st2cpp_types.hpp / test stubs), so it is NOT an aggregate; this is
+   // required so the generated IEC initializers `={{1,2,3},{4,5,6}}` for nested
+   // (multidimensional) arrays compile on strict compilers (gcc >= 13).
 
    /**
     * @brief Default constructor - zero-initializes the array
     */
    STArray() = default;
+
+   /**
+    * @brief Initializer-list constructor (any nesting depth)
+    * @param init List of values; for multi-dimensional arrays each element is a
+    * row initializer list that converts to the inner STArray recursively.
+    *
+    * Deliberately non-templated on T: a braced row `{1,2,3}` converts to the
+    * element type (another STArray) via this same constructor at each level,
+    * and IEC literals (int/float) are narrowed while filling the scalar leaves.
+    * Examples:
+    *   STArray<Int, 0, 5> a = {1, 2, 3, 4, 5};
+    *   STArray<STArray<Int, 0, 2>, 0, 1> m = {{1, 2, 3}, {4, 5, 6}};
+    *   STArray<STArray<STArray<Real, 0, 1>, 2, 3>, 1, 2> t = {{{1,2},{3,4}},{{5,6},{7,8}}};
+    */
+   STArray(std::initializer_list<T> init)
+   {
+      size_t i = 0;
+      for (const auto& val : init) {
+         if (i < SIZE) {
+            data[i++] = T(val);
+         }
+      }
+   }
 
    /**
     * @brief Copy constructor - trivially copyable when T is trivially copyable

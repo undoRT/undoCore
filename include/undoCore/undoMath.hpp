@@ -839,14 +839,4 @@ inline T MOD(T x, T y)
    }
 }
 
-// ============================================================================
-// Aliases for commonly used functions
-// ============================================================================
-
-// Short aliases for bit operations (for convenience in generated code)
-using SHL = SHL;
-using SHR = SHR;
-using ROL = ROL;
-using ROR = ROR;
-
 } // namespace undoCore
