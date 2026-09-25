@@ -53,7 +53,7 @@ using Lword = uint64_t; // LWORD
 
 // Character strings
 using String = std::string;   // STRING
-using Wstring = std::wstring; // WSTRING
+using WString = std::wstring; // WSTRING
 
 // Date and time types (represented as seconds or milliseconds)
 using Time = UInt32; // TIME (milliseconds)
@@ -365,7 +365,7 @@ using WORD = Word;
 using DWORD = Dword;
 using LWORD = Lword;
 using STRING = String;
-using WSTRING = Wstring;
+using WSTRING = WString;
 using TIME = Time;
 // TODO: consider UInt64 for post-2106 safety
 using DATE = Date;
