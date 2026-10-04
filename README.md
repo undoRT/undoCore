@@ -1,12 +1,12 @@
 # undoCore
 
-![C++20](https://img.shields.io/badge/C++20-blue.svg)
+![C++17](https://img.shields.io/badge/C++17-blue.svg)
 ![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)
 [![Docs](https://github.com/undoRT/undoCore/actions/workflows/docs.yml/badge.svg)](https://undort.com/undoCore/api/)
 [![Build](https://github.com/undoRT/undoCore/actions/workflows/build.yml/badge.svg)](https://github.com/undoRT/undoCore/actions/workflows/build.yml)
 [![Release](https://github.com/undoRT/undoCore/actions/workflows/release.yml/badge.svg)](https://github.com/undoRT/undoCore/releases)
 
-***Header-only C++20 library providing core infrastructure for the undoRT ecosystem.***
+***Header-only C++17 library providing core infrastructure for the undoRT ecosystem.***
 
 ---
 
@@ -23,7 +23,7 @@ All undoRT projects share these common interfaces to ensure seamless interoperab
 
 - **IoBus Interface** – Abstract contract for fieldbus master synchronization
 - **Process Image** – Double-buffered memory layout for IEC 61131-3 (%I) —('Q) – %M)
-- **IEC 61131-3 Types** – Complete set of elementary types mapped to C++20
+- **IEC 61131-3 Types** – Complete set of elementary types mapped to C++17
 - **STArray** – IEC 61131-3 compatible array with arbitrary bounds
 - **VAR_IN_OUT** – Reference wrapper for in-out parameters
 - **Time Literals** ‣ IEC-style time literal parsing (T#10s, T#100ms, etc.)
@@ -31,7 +31,7 @@ All undoRT projects share these common interfaces to ensure seamless interoperab
 
 ## Requirements
 
-- C++20 compiler (GCC 11+, Clang 14+)
+- C++17 compiler (GCC 7+, Clang 5+)
 - CMake 3.20+
 - Linux (development and testing)
 - Little-endian architecture (x86/x86_64)

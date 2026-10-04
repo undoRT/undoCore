@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 
 project(undoCore
-    VERSION 0.2.3
+    VERSION 0.2.4
     DESCRIPTION "undoRT shared core - header-only"
     LANGUAGES CXX
 )
@@ -15,7 +15,7 @@ target_include_directories(undoCore INTERFACE
     $<INSTALL_INTERFACE:include>
 )
 
-target_compile_features(undoCore INTERFACE cxx_std_20)
+target_compile_features(undoCore INTERFACE cxx_std_17)
 
 # Installation (for find_package in other repos)
 include(GNUInstallDirs)
